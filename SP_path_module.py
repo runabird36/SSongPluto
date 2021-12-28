@@ -16,9 +16,29 @@ sys.path.append(_main_path+'/model')
 sys.path.append(_main_path+'/toolkit')
 sys.path.append(_main_path+'/toolkit/GP_video_tool')
 sys.path.append(_main_path+'/view')
-sys.path.append(_main_path+'/view/customItem')
+sys.path.append(_main_path+'/view/custom_view')
 
 sys.path.append(_main_path+'/donwload/certs')
+
+
+
+
+
+
+
+hide_icon = _main_path+'/icons/hideAsset.png'
+max_icon = _main_path+'/icons/max.png'
+close_icon = _main_path+'/icons/closeAsset.png'
+
+
+
+
+
+
+
+
+
+
 
 
 _ROOT_PATH_ = ''

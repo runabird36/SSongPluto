@@ -47,9 +47,8 @@ class SPController():
 
 
     def init_data(self):
-        self.set_default_info()
+        self.load_default()
         _root_path = sp.get_root_path()
-        print(_root_path)
         if _root_path is not None:
             self.set_root_info_in_tool(_root_path)
 
@@ -59,6 +58,8 @@ class SPController():
 
 
     def set_link(self):
+        self._ui.frame_top.bn_min.clicked.connect(lambda: self._ui.showMinimized())
+        self._ui.frame_top.bn_close.clicked.connect(lambda: self._ui.close())
         self._ui.SP_root_dir_btn.clicked.connect(self.select_root_dir)
 
 
@@ -69,9 +70,7 @@ class SPController():
 
 
 
-    def set_default_info(self):
-        _res = SP_py_toolkit.read_json(sp._DEFAULT_INFO_PATH_)
-        sp._DEFAULT_INFO_DICT_ = _res
+
 
 
     def select_root_dir(self):
@@ -102,34 +101,21 @@ class SPController():
 
 
 
+
+
+
     def save_default(self):
         SP_py_toolkit.write_json(sp._DEFAULT_INFO_PATH_, sp._DEFAULT_INFO_DICT_)
 
 
+    def load_default(self):
+        _res = SP_py_toolkit.read_json(sp._DEFAULT_INFO_PATH_)
+        sp._DEFAULT_INFO_DICT_ = _res
 
 
 
-    # def set_uiInfo(self):
-    #     print 'Query Clear!'
-    #     cur_status_gif = self._ui.GP_status_lb.movie()
-    #     cur_status_gif.stop()
-    #     self.set_progress('CLEAR')
-    #
-    #     self._ui.set_completer_words(self._info_model.user_list)
-    #     self._ui._completer.activated.connect(self.add_tag_with_completer)
-    #
-    #     self._ui.set_prj_cbWidget(self._info_model.prj_list, self._info_model.All_tasks_dict)
-    #     # if str(self._ui.GP_prj_cb.currentText()) == 'Select Project':
-    #     #     # self.cur_prj_fps = '24'
-    #     #     return
-    #     # else:
-    #     default_prj = self._info_model.prj_list[0]
-    #     default_task_list = self._info_model.All_tasks_dict[default_prj]
-    #     self.set_fps_defaultCC(default_task_list)from PyQt5 import QtCore, QtGui, QtWidgets
-    #
-    #     self.is_queried = True
-    #     # self._ui.show_info_in_widget(self._info_model.All_tasks_dict, self._info_model.task_count)
-    #
+
+
 
 
 

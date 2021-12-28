@@ -9,12 +9,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from SP_custom_ui import FlatHead
+import traceback
 
 
 class Ui_SSongPluto(QtWidgets.QMainWindow):
     def __init__(self, _parent=None):
         super(Ui_SSongPluto, self).__init__(_parent)
-        self.style_component = {'background_color': '#333333',
+        # self.style_component = {'background_color': '#333333',
+        #                         'border_color': '#595959',
+        #                         'font_color':'#D9D9D9',
+        #                         'font_color_pressed': '#595959',
+        #                         'button_color': 'rgba(70,70,70,0.5)'}
+
+
+        self.style_component = {'background_color': 'rgb(91,90,90)',
                                 'border_color': '#595959',
                                 'font_color':'#D9D9D9',
                                 'font_color_pressed': '#595959',
@@ -24,11 +33,38 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
 
     def setupUi(self):
         self.setObjectName("SSongPluto")
-        self.resize(735, 530)
+        self.resize(800, 550)
+        self.setMinimumSize(QtCore.QSize(800, 550))
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
         self.centralwidget = QtWidgets.QWidget(self)
         self.centralwidget.setObjectName("centralwidget")
+        self.centralwidget.setStyleSheet(u"background:"+self.style_component['background_color']+";")
+
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+
+
+        try:
+            self.frame_top = FlatHead(self.centralwidget)
+            self.frame_top.init_head()
+        except:
+            traceback.print_exc()
+
+
+
+        self.verticalLayout_2.addWidget(self.frame_top)
+
+
+
+
+
+
+
+
+
+
         self.SP_main_vl = QtWidgets.QVBoxLayout()
         self.SP_main_vl.setObjectName("SP_main_vl")
         self.SP_root_dir_hl = QtWidgets.QHBoxLayout()

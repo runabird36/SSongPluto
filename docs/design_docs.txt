@@ -1,0 +1,19 @@
+1. root 경로 지정 : 전체 dir 지정하면, 
+		- 영구적으로 저장
+		- 해당 dir에 있는 프로젝트 자동 검색 후 ,list up
+			- name
+			- is git
+			- latest update date
+			- prj type
+
+2. list up할 때, 지정되어있는 icon 과 몇일동안 업데이트를 안했는지 
+ list item으로 show
+
+3. 프로젝트를 하나 클릭할때, .md 에 적혀있는 프로젝트 설명 display
+
+4. create project / open with GIT bash 두가지 버튼 추가
+
+
+5. create project -> 프로젝트 타입 (c++ / python /  maya 등등)
+	        -> 프로젝트 이름 -> (자동으로 work prefix 붙음)
+	        -> README.md 자동 생성 description 작성 
