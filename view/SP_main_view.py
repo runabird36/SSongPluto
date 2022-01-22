@@ -29,6 +29,8 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
                                 'font_color_pressed': '#595959',
                                 'button_color': 'rgba(70,70,70,0.5)'}
 
+        self.btn_list = []
+
 
 
     def setupUi(self):
@@ -76,7 +78,9 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_root_dir_hl.setObjectName("SP_root_dir_hl")
         self.SP_root_dir_btn = QtWidgets.QPushButton(self.centralwidget)
         self.SP_root_dir_btn.setObjectName("SP_root_dir_btn")
+        self.SP_root_dir_btn.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         self.SP_root_dir_hl.addWidget(self.SP_root_dir_btn)
+        self.btn_list.append(self.SP_root_dir_btn)
 
         self.SP_root_dir_lb = QtWidgets.QLabel(self.centralwidget)
         self.SP_root_dir_lb.setObjectName("SP_root_dir_lb")
@@ -108,13 +112,21 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_btn_list_hl.setObjectName("SP_btn_list_hl")
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.SP_btn_list_hl.addItem(spacerItem)
+
+
         self.SP_create_prj_btn = QtWidgets.QPushButton(self.centralwidget)
         self.SP_create_prj_btn.setObjectName("SP_create_prj_btn")
+        self.SP_create_prj_btn.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         self.SP_btn_list_hl.addWidget(self.SP_create_prj_btn)
+        self.btn_list.append(self.SP_create_prj_btn)
+
         self.SP_open_btn = QtWidgets.QPushButton(self.centralwidget)
         self.SP_open_btn.setObjectName("SP_open_btn")
+        self.SP_open_btn.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         self.SP_btn_list_hl.addWidget(self.SP_open_btn)
-        self.SP_btn_list_hl.setStretch(0, 10)
+        self.btn_list.append(self.SP_open_btn)
+
+        self.SP_btn_list_hl.setStretch(0, 6)
         self.SP_btn_list_hl.setStretch(1, 1)
         self.SP_btn_list_hl.setStretch(2, 1)
         self.SP_main_vl.addLayout(self.SP_btn_list_hl)
@@ -126,6 +138,7 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.setCentralWidget(self.centralwidget)
 
         self.retranslateUi()
+        self.set_widget_styleSheet()
         QtCore.QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
@@ -200,7 +213,28 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_root_dir_lb.setText(_path)
 
 
-
+    def set_widget_styleSheet(self):
+        for _btn in self.btn_list:
+            _btn.setStyleSheet(u"QPushButton {\n"
+    "	border: 2px solid rgb(51,51,51);\n"
+    "	border-radius: 5px;	\n"
+    "	color:rgb(255,255,255);\n"
+    "	background-color: rgb(51,51,51);\n"
+    "}\n"
+    "QPushButton:hover {\n"
+    "	border: 2px solid rgb(0,143,150);\n"
+    "	background-color: rgb(0,143,150);\n"
+    "}\n"
+    "QPushButton:pressed {	\n"
+    "	border: 2px solid rgb(0,143,150);\n"
+    "	background-color: rgb(51,51,51);\n"
+    "}\n"
+    "\n"
+    "QPushButton:disabled {	\n"
+    "	border-radius: 5px;	\n"
+    "	border: 2px solid rgb(112,112,112);\n"
+    "	background-color: rgb(112,112,112);\n"
+    "}")
 
 
 if __name__ == "__main__":
