@@ -46,6 +46,10 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
 
 
+        self.SP_main_vl = QtWidgets.QVBoxLayout()
+        self.SP_main_vl.setObjectName("SP_main_vl")
+
+
         try:
             self.frame_top = FlatHead(self.centralwidget)
             self.frame_top.init_head()
@@ -54,7 +58,7 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
 
 
 
-        self.verticalLayout_2.addWidget(self.frame_top)
+        self.SP_main_vl.addWidget(self.frame_top)
 
 
 
@@ -65,8 +69,9 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
 
 
 
-        self.SP_main_vl = QtWidgets.QVBoxLayout()
-        self.SP_main_vl.setObjectName("SP_main_vl")
+
+
+
         self.SP_root_dir_hl = QtWidgets.QHBoxLayout()
         self.SP_root_dir_hl.setObjectName("SP_root_dir_hl")
         self.SP_root_dir_btn = QtWidgets.QPushButton(self.centralwidget)
@@ -114,8 +119,9 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_btn_list_hl.setStretch(2, 1)
         self.SP_main_vl.addLayout(self.SP_btn_list_hl)
         self.SP_main_vl.setStretch(0, 1)
-        self.SP_main_vl.setStretch(1, 10)
-        self.SP_main_vl.setStretch(2, 1)
+        self.SP_main_vl.setStretch(1, 1)
+        self.SP_main_vl.setStretch(2, 10)
+        self.SP_main_vl.setStretch(3, 1)
         self.verticalLayout_2.addLayout(self.SP_main_vl)
         self.setCentralWidget(self.centralwidget)
 

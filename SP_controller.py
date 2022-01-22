@@ -58,8 +58,8 @@ class SPController():
 
 
     def set_link(self):
-        self._ui.frame_top.bn_min.clicked.connect(lambda: self._ui.showMinimized())
-        self._ui.frame_top.bn_close.clicked.connect(lambda: self._ui.close())
+        # self._ui.frame_top.bn_min.clicked.connect(lambda: self._ui.showMinimized())
+        # self._ui.frame_top.bn_close.clicked.connect(lambda: self._ui.close())
         self._ui.SP_root_dir_btn.clicked.connect(self.select_root_dir)
 
 
