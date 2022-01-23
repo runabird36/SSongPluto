@@ -51,12 +51,17 @@ class SPController():
 
         self.load_default()
         _root_path = sp.get_root_path()
-        if _root_path is not None:
+        self._ui.change_file_label_color("green")
+
+        if (_root_path is not None) and (_root_path != ""):
             self.set_root_info_in_tool(_root_path)
             self.thread_pool = SP_py_toolkit.Pool()
             self.thread_pool.add_job(self.query_prj_info)
             self.thread_pool.finished.connect(self.init_prj_view)
             self.thread_pool.start_pool()
+        else:
+            self._ui.change_file_label_color("yellow")
+            self._ui.frame_top.set_status_gif('IMPROGRESS', msg="경로 지정 필요!")
 
 
     def _show(self):
@@ -68,6 +73,7 @@ class SPController():
         # self._ui.frame_top.bn_close.clicked.connect(lambda: self._ui.close())
         self._ui.SP_root_dir_btn.clicked.connect(self.select_root_dir)
         self._ui.SP_info_prj_lw.itemClicked.connect(self.select_cur_prj)
+        self._ui.SP_open_btn.clicked.connect(self.open_folder)
 
     def run(self):
         self._setup()
@@ -128,6 +134,7 @@ class SPController():
     def select_cur_prj(self,_cur_prj_item):
         _prj_obj = _cur_prj_item.data(QtCore.Qt.UserRole)
         self._ui.set_description(_prj_obj)
+        sh.set_cur_prj_path(_prj_obj.path)
 
 
     def save_default(self):
@@ -140,8 +147,11 @@ class SPController():
 
 
 
+    def open_folder(self):
+        _cur_prj_path = sh.get_cur_prj_path()
+        _cur_prj_path = os.path.realpath(_cur_prj_path)
 
-
+        os.startfile(_cur_prj_path)
 
 
 

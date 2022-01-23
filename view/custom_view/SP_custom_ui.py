@@ -159,21 +159,25 @@ class FlatHead(QtWidgets.QFrame):
 
 
 
-    def set_status_gif(self, _status="IMPROGRESS"):
+    def set_status_gif(self, _status="IMPROGRESS", msg=""):
         cur_gif = ''
         if _status == 'IMPROGRESS':
             cur_gif = sp.loading_gif_icon
-            self.lab_appname.setText("Loading...")
+            if msg != "":
+                self.lab_appname.setText(msg)
+            else:
+                self.lab_appname.setText("Loading...")
         elif _status == "CLEAR":
             cur_gif = sp.clear_gif_icon
             self.lab_appname.setText("SSongPluto")
+
 
         if self.status_lb.movie():
             self.status_lb.movie().stop()
 
 
         self.movie = QtGui.QMovie(cur_gif)
-        _scaled = 40
+        _scaled = 50
         self.movie.setScaledSize(QtCore.QSize(_scaled,_scaled))
         self.movie.start()
         self.status_lb.setMovie(self.movie)

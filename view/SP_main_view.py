@@ -160,7 +160,7 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("SSongPluto", "SSongPluto"))
         self.SP_root_dir_btn.setText(_translate("SSongPluto", "경로 지정"))
-        self.SP_root_dir_lb.setText(_translate("SSongPluto", "TextLabel"))
+        self.SP_root_dir_lb.setText(_translate("SSongPluto", ""))
         self.SP_create_prj_btn.setText(_translate("SSongPluto", "프로젝트 생성"))
         self.SP_open_btn.setText(_translate("SSongPluto", "프로젝트 열기"))
 

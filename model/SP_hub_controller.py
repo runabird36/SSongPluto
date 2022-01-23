@@ -5,6 +5,7 @@ import os, time
 from datetime import date
 
 _PRJ_HUB_ = []
+_CUR_PRJ_PATH_ = ""
 
 def is_git_project(_check_tar_dir):
     if '.git' in os.listdir(_check_tar_dir):
@@ -71,11 +72,23 @@ def collect_prj_info(_root_path):
 
 
 
+def set_cur_prj_path(_path):
+    global _CUR_PRJ_PATH_
+    _CUR_PRJ_PATH_ = _path
+
+
+def get_cur_prj_path():
+    global _CUR_PRJ_PATH_
+    return _CUR_PRJ_PATH_
+
+
 
 
 def refresh_data():
     global _PRJ_HUB_
+    global _CUR_PRJ_PATH_
     _PRJ_HUB_ = []
+    _CUR_PRJ_PATH_ = ""
 
 # aa = r'D:\work/work'
 # collect_prj_info(aa)
