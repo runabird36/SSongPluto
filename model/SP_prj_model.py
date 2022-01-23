@@ -1,11 +1,16 @@
 
+from datetime import datetime
+
 class ProjectModel():
     def __init__(self):
         self._name = ""
         self._path = ""
         self._is_git = False
         self._latest_date = ""
+        self._latest_date_in_datetime = None
+        self._time_passed = None
         self._type = ""
+
 
     @property
     def name(self):
@@ -37,9 +42,24 @@ class ProjectModel():
     def latest_date(self):
         return self._latest_date
 
+    @property
+    def latest_datetime(self):
+        return self._latest_date_in_datetime
+
     @latest_date.setter
     def latest_date(self, _l_date):
         self._latest_date = _l_date
+        self._latest_date_in_datetime = datetime.strptime(_l_date, "%Y-%m-%d %H:%M:%S")
+
+
+    @property
+    def time_passed(self):
+        return self._time_passed
+
+    @time_passed.setter
+    def time_passed(self, _time_passed):
+        self._time_passed = _time_passed
+
 
     @property
     def type(self):

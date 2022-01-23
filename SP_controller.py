@@ -18,6 +18,7 @@ import SP_main_view
 
 import SP_py_toolkit
 
+import SP_hub_controller as sh
 
 from pprint import pprint
 import traceback, os, subprocess, time, datetime, math, re
@@ -51,6 +52,7 @@ class SPController():
         _root_path = sp.get_root_path()
         if _root_path is not None:
             self.set_root_info_in_tool(_root_path)
+            self.init_prj_info(_root_path)
 
 
     def _show(self):
@@ -97,6 +99,10 @@ class SPController():
         self.save_default()
 
 
+    def init_prj_info(self, _root_path):
+        sh.collect_prj_info(_root_path)
+        # print(sh._PRJ_HUB_)
+        self._ui.set_prj_lw(sh._PRJ_HUB_)
 
 
 

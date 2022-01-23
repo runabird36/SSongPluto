@@ -212,6 +212,12 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
     def set_root_lb(self, _path):
         self.SP_root_dir_lb.setText(_path)
 
+    def set_prj_lw(self, _prj_hub_list):
+
+        for _prj in _prj_hub_list:
+            # print(_prj)
+            pass
+
 
     def set_widget_styleSheet(self):
         for _btn in self.btn_list:

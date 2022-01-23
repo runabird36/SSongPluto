@@ -1,4 +1,4 @@
-1. root 경로 지정 : 전체 dir 지정하면, 
+1. root 경로 지정 : 전체 dir 지정하면,
 		- 영구적으로 저장
 		- 해당 dir에 있는 프로젝트 자동 검색 후 ,list up
 			- name
@@ -6,7 +6,7 @@
 			- latest update date
 			- prj type
 
-2. list up할 때, 지정되어있는 icon 과 몇일동안 업데이트를 안했는지 
+2. list up할 때, 지정되어있는 icon 과 몇일동안 업데이트를 안했는지
  list item으로 show
 
 3. 프로젝트를 하나 클릭할때, .md 에 적혀있는 프로젝트 설명 display
@@ -16,4 +16,29 @@
 
 5. create project -> 프로젝트 타입 (c++ / python /  maya 등등)
 	        -> 프로젝트 이름 -> (자동으로 work prefix 붙음)
-	        -> README.md 자동 생성 description 작성 
+	        -> README.md 자동 생성 description 작성
+
+
+
+
+==================프로젝트 리스트 확인 창 구현 부분=================================
+1. 프로젝트명 + 몇일 경과 을 담고있는 custom widget 생성
+
+2. SP_main_view에서, prj info hub 정보를 기반으로 프로젝트 list display
+
+3. ssongPluto 포멧의 파일에 해당 프로젝트의 정보 (타입) 으로부터 해당 프로젝트의
+   타입 파악
+
+4. 만일 해당 포멧의 파일이 없을 경우, open할 때, 지정하도록 하는 dialog
+- 원하는 타입이 없는경우, 등록하는 기능 추가
+(툴을 통해서가 아닌, manual로 생성했을 케이스)
+
+
+5. create 프로젝트 할때, 프로젝트명 + 프로젝트 타입 (콤보박스) 입력 dialog
+- 원하는 타입이 없는경우, 등록하는 기능 추가
+
+
+6. DEFAULT_INFO.json에 프로젝트 타입 : icon 경로 의 dictionary 등록
+
+================프로젝트 spec 정보 창 구현 부분 =================================
+1. icon + 타입명 (label + label) horizontal layout추가
