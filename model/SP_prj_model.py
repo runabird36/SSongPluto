@@ -62,6 +62,14 @@ class ProjectModel():
 
 
     @property
+    def time_passed_str(self):
+        _res = str(self._time_passed).split(' ')[0]
+        if str(_res) == '0:00:00':
+            return 'Today Updated'
+        return _res + ' Days passed'
+
+
+    @property
     def type(self):
         return self._type
 

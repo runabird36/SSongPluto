@@ -69,11 +69,13 @@ def collect_prj_info(_root_path):
         _PRJ_HUB_.append(_prj_obj)
 
 
-    for _prj in _PRJ_HUB_:
-        print(_prj.name)
 
 
 
+
+def refresh_data():
+    global _PRJ_HUB_
+    _PRJ_HUB_ = []
 
 # aa = r'D:\work/work'
 # collect_prj_info(aa)

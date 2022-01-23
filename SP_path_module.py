@@ -29,6 +29,9 @@ sys.path.append(_main_path+'/donwload/certs')
 hide_icon = _main_path+'/icons/hideAsset.png'
 max_icon = _main_path+'/icons/max.png'
 close_icon = _main_path+'/icons/closeAsset.png'
+folder_gif_icon = _main_path +'/icons/folder_icon.gif'
+loading_gif_icon = _main_path +'/icons/loading2.gif'
+clear_gif_icon = _main_path +'/icons/check_check_jump.gif'
 
 
 

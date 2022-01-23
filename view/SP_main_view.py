@@ -9,7 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from SP_custom_ui import FlatHead
+from SP_custom_ui import FlatHead, custom_listwidget
 import traceback
 
 
@@ -30,6 +30,9 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
                                 'button_color': 'rgba(70,70,70,0.5)'}
 
         self.btn_list = []
+        self.main_text_font = QtGui.QFont()
+        self.main_text_font.setFamily(u"Segoe UI")
+        self.main_text_font.setPointSize(7)
 
 
 
@@ -93,20 +96,32 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_main_vl.addLayout(self.SP_root_dir_hl)
         self.SP_info_hl = QtWidgets.QHBoxLayout()
         self.SP_info_hl.setObjectName("SP_info_hl")
-        self.SP_info_prj_lw = QtWidgets.QListWidget(self.centralwidget)
+
+
+        self.SP_info_prj_lw = custom_listwidget(self.centralwidget)
         self.SP_info_prj_lw.setObjectName("SP_info_prj_lw")
         self.SP_info_hl.addWidget(self.SP_info_prj_lw)
+
+
+
         self.line = QtWidgets.QFrame(self.centralwidget)
         self.line.setFrameShape(QtWidgets.QFrame.VLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.SP_info_hl.addWidget(self.line)
+
+
         self.SP_info_desc_te = QtWidgets.QTextEdit(self.centralwidget)
         self.SP_info_desc_te.setObjectName("SP_info_desc_te")
+        self.SP_info_desc_te.setFont(self.main_text_font)
+        self.SP_info_desc_te.setReadOnly(True)
+        # self.SP_info_desc_te.setStyleSheet(u"color:rgb(255,255,255);")
         self.SP_info_hl.addWidget(self.SP_info_desc_te)
-        self.SP_info_hl.setStretch(0, 1)
+
+
+        self.SP_info_hl.setStretch(0, 3)
         self.SP_info_hl.setStretch(1, 1)
-        self.SP_info_hl.setStretch(2, 1)
+        self.SP_info_hl.setStretch(2, 2)
         self.SP_main_vl.addLayout(self.SP_info_hl)
         self.SP_btn_list_hl = QtWidgets.QHBoxLayout()
         self.SP_btn_list_hl.setObjectName("SP_btn_list_hl")
@@ -144,10 +159,10 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
     def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
         self.setWindowTitle(_translate("SSongPluto", "SSongPluto"))
-        self.SP_root_dir_btn.setText(_translate("SSongPluto", "PushButton"))
+        self.SP_root_dir_btn.setText(_translate("SSongPluto", "경로 지정"))
         self.SP_root_dir_lb.setText(_translate("SSongPluto", "TextLabel"))
-        self.SP_create_prj_btn.setText(_translate("SSongPluto", "PushButton"))
-        self.SP_open_btn.setText(_translate("SSongPluto", "PushButton"))
+        self.SP_create_prj_btn.setText(_translate("SSongPluto", "프로젝트 생성"))
+        self.SP_open_btn.setText(_translate("SSongPluto", "프로젝트 열기"))
 
 
     def change_file_label_color(self, target_color):
@@ -213,10 +228,15 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
         self.SP_root_dir_lb.setText(_path)
 
     def set_prj_lw(self, _prj_hub_list):
+        self.SP_info_prj_lw.set_items(_prj_hub_list)
 
-        for _prj in _prj_hub_list:
-            # print(_prj)
-            pass
+
+    def set_description(self, _prj_obj):
+        _msg ='Project Name\t' + '{0}\n'.format(_prj_obj.name) +\
+                'Directory\t' + '{0}\n'.format(_prj_obj.path) +\
+                'Is Git\t' + '{0}\n'.format(str(_prj_obj.is_git)) +\
+                'Updated Date\t' + '{0}'.format( _prj_obj.latest_date)
+        self.SP_info_desc_te.setText(_msg)
 
 
     def set_widget_styleSheet(self):
@@ -241,6 +261,10 @@ class Ui_SSongPluto(QtWidgets.QMainWindow):
     "	border: 2px solid rgb(112,112,112);\n"
     "	background-color: rgb(112,112,112);\n"
     "}")
+
+
+    def refresh_all(self):
+        self.SP_info_prj_lw.reset_listwidget()
 
 
 if __name__ == "__main__":

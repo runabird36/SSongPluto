@@ -10,7 +10,7 @@ controller all model, view, and anything else
 
 import sys
 
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 
 import SP_path_module as sp
 
@@ -33,7 +33,6 @@ class SPController():
     def __init__(self):
         self._ui = SP_main_view.Ui_SSongPluto()
 
-
         try:
             pass
         except:
@@ -48,11 +47,16 @@ class SPController():
 
 
     def init_data(self):
+        self._ui.frame_top.set_status_gif('IMPROGRESS')
+
         self.load_default()
         _root_path = sp.get_root_path()
         if _root_path is not None:
             self.set_root_info_in_tool(_root_path)
-            self.init_prj_info(_root_path)
+            self.thread_pool = SP_py_toolkit.Pool()
+            self.thread_pool.add_job(self.query_prj_info)
+            self.thread_pool.finished.connect(self.init_prj_view)
+            self.thread_pool.start_pool()
 
 
     def _show(self):
@@ -63,7 +67,7 @@ class SPController():
         # self._ui.frame_top.bn_min.clicked.connect(lambda: self._ui.showMinimized())
         # self._ui.frame_top.bn_close.clicked.connect(lambda: self._ui.close())
         self._ui.SP_root_dir_btn.clicked.connect(self.select_root_dir)
-
+        self._ui.SP_info_prj_lw.itemClicked.connect(self.select_cur_prj)
 
     def run(self):
         self._setup()
@@ -83,6 +87,10 @@ class SPController():
         try:
             _sel_path = self._ui.get_selectedpath()
             self.set_root_info_in_tool(_sel_path)
+
+            self._ui.refresh_all()
+            sh.refresh_data()
+            self.init_data()
         except:
             traceback.print_exc()
 
@@ -99,15 +107,27 @@ class SPController():
         self.save_default()
 
 
-    def init_prj_info(self, _root_path):
+
+
+
+
+    def query_prj_info(self):
+        _root_path = sp.get_root_path()
         sh.collect_prj_info(_root_path)
-        # print(sh._PRJ_HUB_)
+        time.sleep(1)
+
+
+    def init_prj_view(self):
         self._ui.set_prj_lw(sh._PRJ_HUB_)
+        self._ui.frame_top.set_status_gif('CLEAR')
 
 
 
 
 
+    def select_cur_prj(self,_cur_prj_item):
+        _prj_obj = _cur_prj_item.data(QtCore.Qt.UserRole)
+        self._ui.set_description(_prj_obj)
 
 
     def save_default(self):
